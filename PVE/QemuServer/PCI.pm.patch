@@ -1,0 +1,11 @@
+--- PVE/QemuServer/PCI.pm	2023-07-18 09:22:40.861719916 +0800
++++ PVE/QemuServer/PCI-loong64.pm	2023-07-18 09:58:58.378354467 +0800
+@@ -286,7 +286,7 @@
+ 
+     # using same bus slots on all HW, so we need to check special cases here:
+     my $busname = 'pci';
+-    if ($arch eq 'aarch64' && $machine =~ /^virt/) {
++    if ($arch eq 'aarch64' || $arch eq 'loongarch64' && $machine =~ /^virt/) {
+ 	die "aarch64/virt cannot use IDE devices\n" if $id =~ /^ide/;
+ 	$busname = 'pcie';
+     }

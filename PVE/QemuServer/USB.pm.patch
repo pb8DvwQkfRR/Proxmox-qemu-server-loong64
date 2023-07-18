@@ -1,0 +1,11 @@
+--- PVE/QemuServer/USB.pm	2023-07-18 09:22:40.861719916 +0800
++++ PVE/QemuServer/USB-loong64.pm	2023-07-18 09:58:58.382354426 +0800
+@@ -133,7 +133,7 @@
+ 	&& defined($ostype) && ($ostype eq 'l26' || windows_version($ostype) > 7);
+     my $is_q35 = PVE::QemuServer::Machine::machine_type_is_q35($conf);
+ 
+-    if ($arch eq 'aarch64') {
++    if ($arch eq 'aarch64' || $arch eq 'loongarch64') {
+         $pciaddr = print_pci_addr('ehci', $bridges, $arch, $machine);
+         push @$devices, '-device', "usb-ehci,id=ehci$pciaddr";
+     } elsif (!$is_q35) {
